@@ -19,3 +19,14 @@ printed Madani Mushaf page-for-page.
   <img src="screenshots/04-home-reading.png" width="180" />
   <img src="screenshots/05-mushaf-immersive.png" width="180" />
 </p>
+
+## Tech Stack
+
+- **Swift, SwiftUI, MVVM** — declarative views over observable managers, no third-party UI framework
+- **CoreData** — bookmarks, reading progress, downloaded audio/pages
+- **Combine** — reactive bindings between managers (audio, location, theme, localization) and views
+- **WidgetKit** — 5 home-screen widgets (Continue Reading, Prayer Times, Hijri Date, Verse of the Day, Azkar) plus a Live Activity for audio playback
+- **CoreLocation** — Qiblah direction and location-based prayer time calculation
+- **AVFoundation** — Quran recitation playback with background audio and lock-screen controls
+- **XcodeGen** — the `.xcodeproj` is generated from `project.yml`, keeping the project file diff-free and mergeable
+- **Custom font pipeline** — KFGQPC HAFS Uthmanic Script with hand-tuned fixes for Arabic contextual-alternate (`calt`) shaping edge cases (see Engineering Highlights)
