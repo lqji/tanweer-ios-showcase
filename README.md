@@ -30,3 +30,57 @@ printed Madani Mushaf page-for-page.
 - **AVFoundation** — Quran recitation playback with background audio and lock-screen controls
 - **XcodeGen** — the `.xcodeproj` is generated from `project.yml`, keeping the project file diff-free and mergeable
 - **Custom font pipeline** — KFGQPC HAFS Uthmanic Script with hand-tuned fixes for Arabic contextual-alternate (`calt`) shaping edge cases (see Engineering Highlights)
+
+## Architecture
+
+Views stay dumb; each feature area owns a manager that is the single source of truth
+for that slice of state, injected as an `ObservableObject` and shared across views and
+the widget extension via an App Group.
+
+```mermaid
+graph TD
+    subgraph Views
+        Home[Home]
+        Mushaf[Mushaf Reader]
+        Prayer[Prayer Times]
+        Qiblah[Qiblah]
+        Azkar[Azkar]
+        Settings[Settings]
+    end
+
+    subgraph Managers
+        QDM[QuranDataManager]
+        AM[AudioManager]
+        PTM[PrayerTimesManager]
+        LM[LocationManager]
+        TM[TafsirManager]
+        ThM[ThemeManager]
+        LocM[LocalizationManager]
+        NM[NotificationManager]
+    end
+
+    subgraph Storage
+        CD[(CoreData)]
+        Bundle[Bundled SVG Mushaf Pages]
+        AppGroup[(Shared App Group)]
+    end
+
+    Home --> QDM
+    Mushaf --> QDM
+    Mushaf --> AM
+    Prayer --> PTM
+    Qiblah --> LM
+    PTM --> LM
+    Azkar --> ThM
+    Settings --> ThM
+    Settings --> LocM
+
+    QDM --> CD
+    QDM --> Bundle
+    AM --> CD
+    PTM --> AppGroup
+    QDM --> AppGroup
+
+    AppGroup --> Widgets[WidgetKit Extension]
+    AppGroup --> LiveActivity[Live Activity]
+```
