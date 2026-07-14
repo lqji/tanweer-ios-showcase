@@ -84,3 +84,35 @@ graph TD
     AppGroup --> Widgets[WidgetKit Extension]
     AppGroup --> LiveActivity[Live Activity]
 ```
+
+## Engineering Highlights
+
+**Pixel-perfect Mushaf typesetting.** The reader reproduces the printed Madani Mushaf
+page-for-page — line breaks, ornate ayah-end badges, and surah-divider banners all
+match the physical book, not a reflowed approximation. Pages render from bundled SVGs
+rather than plain text, so line-break positions never drift from the print reference.
+
+**A font-shaping bug that only showed up on 3-digit ayah numbers.** Ayah-end badges
+render via the HAFS font's `calt` (contextual alternates) GSUB feature, which
+auto-composes a run of Arabic-Indic digits into the ornate circular glyph — but the
+feature only ships substitution rules for 1–2 digit runs. Any ayah number 100 and
+above partially matched, silently dropping or garbling digits. Neither a ligature-
+trigger prefix nor ZWNJ-separated digits stopped HAFS from re-triggering `calt`. The
+fix: for 3+ digit badges only, draw the circle glyph and the digits as two separate
+layers — the circle from HAFS alone (always renders correctly in isolation), the
+digits in a plain system typeface with no Quranic shaping rules, scaled to ~60% of
+the circle's width. Confirmed by screenshotting a full page of 3-digit ayahs
+(135–141) on-device rather than trusting the font tables.
+
+**An onboarding crash that only reproduced after a fresh install.** `SplashView` and
+`LanguagePickerView` shared a `.id()` view-identity tied to the same state object;
+switching languages during onboarding caused SwiftUI to tear down and reconstruct the
+tree mid-transition, crashing. Fixed by moving the `.id()` binding up to
+`ContentView`/`WhatsNewView` so onboarding's language switch no longer forces a
+splash-view identity change.
+
+**RTL-first, not RTL-retrofitted.** Arabic and English coexist throughout the same
+screens — prayer time cards, Hijri dates, and ayah references all mirror correctly
+per-locale rather than uniformly flipping the whole screen, which is what broke Hijri
+date wrapping and produced a stray English subtitle inside RTL layouts until both were
+tracked down and fixed individually.
