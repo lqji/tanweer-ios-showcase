@@ -116,3 +116,13 @@ screens — prayer time cards, Hijri dates, and ayah references all mirror corre
 per-locale rather than uniformly flipping the whole screen, which is what broke Hijri
 date wrapping and produced a stray English subtitle inside RTL layouts until both were
 tracked down and fixed individually.
+
+## More from this developer
+
+- [Tanweer for Android](https://github.com/lqji/tanweer-android-showcase) — same product, ported to Kotlin + Jetpack Compose
+- [Type Faster](https://github.com/lqji/type-faster-showcase) — a typing test with real-time multiplayer racing
+- [Full portfolio →](https://github.com/lqji/portfolio)
+
+---
+
+Built and maintained by **Ahmed Abdullah**.
