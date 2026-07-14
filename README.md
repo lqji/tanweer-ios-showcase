@@ -9,3 +9,13 @@ printed Madani Mushaf page-for-page.
 > without exposing the codebase.
 
 **[Download on the App Store →](https://apps.apple.com/om/app/tanweer-enlighten-your-life/id6773591303)**
+
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/01-splash.png" width="180" />
+  <img src="screenshots/02-language-picker.png" width="180" />
+  <img src="screenshots/03-theme-picker.png" width="180" />
+  <img src="screenshots/04-home-reading.png" width="180" />
+  <img src="screenshots/05-mushaf-immersive.png" width="180" />
+</p>
