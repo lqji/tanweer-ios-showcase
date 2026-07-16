@@ -11,15 +11,13 @@ Download it on the App Store: https://apps.apple.com/om/app/tanweer-enlighten-yo
 <p align="center">
   <img src="screenshots/01-splash.png" width="170" />
   <img src="screenshots/02-language-picker.png" width="170" />
-  <img src="screenshots/03-theme-picker.png" width="170" />
-  <img src="screenshots/06-home.png" width="170" />
-  <img src="screenshots/05-mushaf-immersive.png" width="170" />
+  <img src="screenshots/04-home.png" width="170" />
+  <img src="screenshots/08-mushaf-reader.png" width="170" />
 </p>
 <p align="center">
-  <img src="screenshots/08-quran-list.png" width="170" />
+  <img src="screenshots/05-qiblah.png" width="170" />
+  <img src="screenshots/06-prayer-times.png" width="170" />
   <img src="screenshots/07-azkar.png" width="170" />
-  <img src="screenshots/04-home-reading.png" width="170" />
-  <img src="screenshots/09-prayer-times.png" width="170" />
 </p>
 
 ## Stack
